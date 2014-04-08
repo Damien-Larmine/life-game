@@ -1,9 +1,9 @@
 /* Projet de fin de Semestre 6 : Le jeu de la vie
- * Par Damien Larminé et Marine Megherbi
+ * Par Damien Larminï¿½ et Marine Megherbi
  * 
- * Jeu de la Vie : Crée par John Conway en 1970
+ * Jeu de la Vie : Crï¿½e par John Conway en 1970
  * 
- * Classe DrawPanel qui dessine les cases et teste leur voisinage pour déterminer si elle vivent ou meurent
+ * Classe DrawPanel qui dessine les cases et teste leur voisinage pour dï¿½terminer si elle vivent ou meurent
  * */
 
 import java.awt.Color;
@@ -36,10 +36,6 @@ public class DrawPanel extends JPanel{
     	
     	cells = new boolean[cellCols][cellRows]; 
 		cellsBuffer = new int[cellCols][cellRows];
-		cells2 = new boolean[cellCols][cellRows]; 
-		cellsBuffer2 = new int[cellCols][cellRows];
-		cells3 = new boolean[cellCols][cellRows]; 
-		cellsBuffer3 = new int[cellCols][cellRows];
 		
 		this.cellSize = cellSize; 
 		this.cellCols = cellCols; 
@@ -56,7 +52,7 @@ public class DrawPanel extends JPanel{
 				}
 			});
   
-			this.addMouseMotionListener(new MouseMotionListener(){ //listener qui dessine les cases lorsque l'on garde le bouton gauche cliqué
+			this.addMouseMotionListener(new MouseMotionListener(){ //listener qui dessine les cases lorsque l'on garde le bouton gauche cliquï¿½
 				public void mouseDragged(MouseEvent e) {
 					try { 
 						cells[e.getX()/cellSize][e.getY()/cellSize] = true; 
@@ -67,51 +63,8 @@ public class DrawPanel extends JPanel{
 				public void mouseMoved(MouseEvent e) {}
 			}); 
     	}
-		else if(population == 1){
-			this.addMouseListener(new MouseAdapter(){ 
-				public void mousePressed(MouseEvent e){
-					try { 
-						cells2[e.getX()/cellSize][e.getY()/cellSize] = true; 
-					} catch ( java.lang.ArrayIndexOutOfBoundsException f ) {}
-					repaint();
-				}
-			});
-  
-			this.addMouseMotionListener(new MouseMotionListener(){ 
-				public void mouseDragged(MouseEvent e) {
-					try { 
-						cells2[e.getX()/cellSize][e.getY()/cellSize] = true; 
-					} catch ( java.lang.ArrayIndexOutOfBoundsException f ) {}
-					repaint();
-            }
-            
-				public void mouseMoved(MouseEvent e) {}
-			}); 
-		}
-		else{
-			this.addMouseListener(new MouseAdapter(){ 
-				public void mousePressed(MouseEvent e){
-					try { 
-						cells3[e.getX()/cellSize][e.getY()/cellSize] = true; 
-					} catch ( java.lang.ArrayIndexOutOfBoundsException f ) {}
-					repaint();
-				}
-			});
-  
-			this.addMouseMotionListener(new MouseMotionListener(){ 
-				public void mouseDragged(MouseEvent e) {
-					try { 
-						cells3[e.getX()/cellSize][e.getY()/cellSize] = true; 
-					} catch ( java.lang.ArrayIndexOutOfBoundsException f ) {}
-					repaint();
-            }
-            
-				public void mouseMoved(MouseEvent e) {}
-			}); 
-		}
-    }
-     
-    //Méthode qui dessine la grille et les cellules
+	
+    //Mï¿½thode qui dessine la grille et les cellules
     
     public void paintComponent(Graphics g) { 
          
@@ -135,23 +88,6 @@ public class DrawPanel extends JPanel{
 			} 
 		}
 		
-		g.setColor(Color.blue); 
-		for( int y=0; y<cellRows; y++ ) { 
-			for( int x=0; x<cellCols; x++ ) { 
-				if ( cells2[x][y] ) { 
-					g.fillRect( x*cellSize, y*cellSize, cellSize-1, cellSize-1 ); 
-				} 
-			} 
-		} 
-		
-		g.setColor(Color.yellow); 
-		for( int y=0; y<cellRows; y++ ) { 
-			for( int x=0; x<cellCols; x++ ) { 
-				if ( cells3[x][y] ) { 
-					g.fillRect( x*cellSize, y*cellSize, cellSize-1, cellSize-1 ); 
-				} 
-			} 
-		} 
     }
                
      
@@ -163,35 +99,12 @@ public class DrawPanel extends JPanel{
 		for( int x=0; x<cellCols; x++ ) { 
 			for( int y=0; y<cellRows; y++ ) { 
 				cells[x][y] = false;
-				cells2[x][y] = false;
-				cells3[x][y] = false;
 			} 
 		}
 		repaint();
 	}
     
-    public synchronized void clear1() { //efface la 2eme et 3eme population
-		generations = 0; 
-		for( int x=0; x<cellCols; x++ ) { 
-			for( int y=0; y<cellRows; y++ ) { 
-				cells2[x][y] = false;
-				cells3[x][y] = false;
-			} 
-		}
-		repaint();
-	}
-    
-    public synchronized void clear2() { //efface uniquement la 3eme population
-		generations = 0; 
-		for( int x=0; x<cellCols; x++ ) { 
-			for( int y=0; y<cellRows; y++ ) { 
-				cells3[x][y] = false;
-			} 
-		}
-		repaint();
-	}
-    
-    // Méthode qui calcule la génération suivante
+    // Mï¿½thode qui calcule la gï¿½nï¿½ration suivante
     
     public synchronized void next() { 
 		int x; 
@@ -221,7 +134,7 @@ public class DrawPanel extends JPanel{
 			} 
 		} 
 
-		// test les voisins des cellules sur les cotés de la grille 
+		// test les voisins des cellules sur les cotï¿½s de la grille 
 		x=1; 
 		y=0; 
 		int dx=1; 
@@ -249,7 +162,7 @@ public class DrawPanel extends JPanel{
 					cellsBuffer[x][y+1]++; 
 			} 
 
-			// lorsque l'on atteint le coté de la grille on change de direction
+			// lorsque l'on atteint le cotï¿½ de la grille on change de direction
 			if ( x==cellCols-1 && y==0 ) { 
 				dx = 0; 
 				dy = 1; 
@@ -260,7 +173,7 @@ public class DrawPanel extends JPanel{
 				dx = 0; 
 				dy = -1; 
 			} else if ( x==0 && y==0 ) { 
-			// se termine quand toutes les cellules ont été testées
+			// se termine quand toutes les cellules ont ï¿½tï¿½ testï¿½es
 				break; 
 			} 
 			x += dx; 
